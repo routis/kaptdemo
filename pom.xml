@@ -52,11 +52,6 @@
         </dependency>
 
         <dependency>
-            <groupId>io.arrow-kt</groupId>
-            <artifactId>arrow-annotations-processor</artifactId>
-            <version>${arrow-kt.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
             <version>${kotlin.version}</version>
