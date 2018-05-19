@@ -5,7 +5,9 @@ import arrow.typeclasses.Monoid
 import java.math.BigDecimal
 import java.math.BigDecimal.ZERO
 
-data class BigDecimalWrapper(val value: BigDecimal)
+data class BigDecimalWrapper(val value: BigDecimal) {
+ companion object
+}
 
 @instance(BigDecimalWrapper::class)
 interface BigDecimalAddition : Monoid<BigDecimalWrapper>{
