@@ -5,4 +5,10 @@ import kotlin.test.assertEquals
 
 class HelloTest {
 
+
+    fun testMonoid() {
+
+
+    }
+
 }
