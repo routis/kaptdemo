@@ -15,7 +15,7 @@
         <kotlin.version>1.3.0</kotlin.version>
 
         <junit.version>4.12</junit.version>
-        <arrow-kt.version>0.7.3</arrow-kt.version>
+        <arrow-kt.version>0.8.0</arrow-kt.version>
     </properties>
 
     <dependencies>
@@ -60,6 +60,7 @@
             <artifactId>arrow-instances-data</artifactId>
             <version>${arrow-kt.version}</version>
         </dependency>
+
 
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
