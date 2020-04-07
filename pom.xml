@@ -12,23 +12,16 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <kotlin.version>1.3.0</kotlin.version>
+        <kotlin.version>1.3.61</kotlin.version>
+        <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
+        <kotlin.compiler.languageVersion>1.3</kotlin.compiler.languageVersion>
+        <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
 
-        <junit.version>4.12</junit.version>
-        <arrow-kt.version>0.8.0</arrow-kt.version>
+        <junit.version>4.13</junit.version>
+        <arrow-kt.version>0.10.5</arrow-kt.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>io.arrow-kt</groupId>
-            <artifactId>arrow-core</artifactId>
-            <version>${arrow-kt.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.arrow-kt</groupId>
-            <artifactId>arrow-generic</artifactId>
-            <version>${arrow-kt.version}</version>
-        </dependency>
         <dependency>
             <groupId>io.arrow-kt</groupId>
             <artifactId>arrow-optics</artifactId>
@@ -40,40 +33,6 @@
             <version>${arrow-kt.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.arrow-kt</groupId>
-            <artifactId>arrow-typeclasses</artifactId>
-            <version>${arrow-kt.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.arrow-kt</groupId>
-            <artifactId>arrow-data</artifactId>
-            <version>${arrow-kt.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.arrow-kt</groupId>
-            <artifactId>arrow-instances-core</artifactId>
-            <version>${arrow-kt.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.arrow-kt</groupId>
-            <artifactId>arrow-instances-data</artifactId>
-            <version>${arrow-kt.version}</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib</artifactId>
-            <version>${kotlin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test-junit</artifactId>
-            <version>${kotlin.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
@@ -82,6 +41,8 @@
     </dependencies>
 
     <build>
+        <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
+        <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -90,6 +51,7 @@
                 <executions>
                     <execution>
                         <id>kapt</id>
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>kapt</goal>
                         </goals>
@@ -100,7 +62,7 @@
                             <annotationProcessorPaths>
                                 <annotationProcessorPath>
                                     <groupId>io.arrow-kt</groupId>
-                                    <artifactId>arrow-annotations-processor</artifactId>
+                                    <artifactId>arrow-meta</artifactId>
                                     <version>${arrow-kt.version}</version>
                                 </annotationProcessorPath>
                             </annotationProcessorPaths>
@@ -127,6 +89,26 @@
                     </execution>
                 </executions>
 
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>target/generated-sources/kaptKotlin/compile</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+
+                </executions>
             </plugin>
         </plugins>
     </build>
